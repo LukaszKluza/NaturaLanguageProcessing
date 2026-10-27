@@ -1,0 +1,67 @@
+import pandas as pd
+
+# 20 przykładowych rekordów
+data = {
+    "text_norm": [
+        # --- Przypadek 1: Leakage między train a test ---
+        "świetny produkt polecam",      # train
+        "świetny produkt polecam",      # test (LEAKAGE)
+        
+        # --- Przypadek 2: Leakage między train, val i test ---
+        "nie polecam odradzam",         # train
+        "nie polecam odradzam",         # val  (LEAKAGE)
+        "nie polecam odradzam",         # test (LEAKAGE)
+        
+        # --- Przypadek 3: Duplikat, ale w tym samym splicie (NIE leakage!) ---
+        "bateria trzyma krótko",        # train
+        "bateria trzyma krótko",        # train (nunique == 1, więc funkcja to zignoruje)
+        
+        # --- Przypadek 4: Kolejny leakage (val i test) + sprzeczne etykiety ---
+        "szybka dostawa",               # val
+        "szybka dostawa",               # test (LEAKAGE)
+        
+        # --- Przypadek 5: Teksty unikalne (brak leakage) ---
+        "ekran dotykowy działa płynnie", # train
+        "jakość wykonania przeciętna",  # val
+        "obsługa klienta na medal",     # test
+        "aparat robi ładne zdjęcia",    # train
+        "brak ładowarki w pudełku",     # train
+        "głośniki grają bardzo cicho",  # val
+        "laptop przegrzewa się w grach",# test
+        "klawiatura jest wygodna",      # train
+        
+        # --- Przypadek 6: Jeszcze jeden leakage z wielokrotnym trainem ---
+        "totalna porażka nie kupujcie", # train
+        "totalna porażka nie kupujcie", # train
+        "totalna porażka nie kupujcie", # test (LEAKAGE)
+
+        "text"
+    ],
+    "split": [
+        "train", "test",
+        "train", "val", "test",
+        "train", "train",
+        "val", "test",
+        "train", "val", "test", "train", "train", "val", "test", "train",
+        "train", "train", "test",
+        "test"
+    ],
+    "target": [
+        "positive", "positive",
+        "negative", "negative", "negative",
+        "negative", "negative",
+        "positive", "negative",  # uwaga: sprzeczna etykieta przy tym samym tekście!
+        "positive",
+        "neutral",
+        "positive",
+        "positive",
+        "negative",
+        "negative",
+        "negative",
+        "positive",
+        "negative", "negative", "negative",
+        "positive"
+    ]
+}
+
+test_leakage_df = pd.DataFrame(data)
