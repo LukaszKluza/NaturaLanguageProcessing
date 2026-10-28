@@ -1,0 +1,55 @@
+{
+  "random_state": 42,
+  "source": "allegro/klej-polemo2-in",
+  "source_urls": {
+    "train": "https://huggingface.co/datasets/allegro/klej-polemo2-in/blob/main/train.csv",
+    "valid": "https://huggingface.co/datasets/allegro/klej-polemo2-in/blob/main/valid.csv",
+    "test": "https://huggingface.co/datasets/allegro/klej-polemo2-in/blob/main/test.csv"
+  },
+  "label_map": {
+    "__label__meta_plus_m": "plus",
+    "__label__meta_minus_m": "minus",
+    "__label__meta_zero": "zero",
+    "__label__meta_amb": "amb"
+  },
+  "classes": [
+    "plus",
+    "minus",
+    "zero",
+    "amb"
+  ],
+  "split_sizes_raw": {
+    "train": 5783,
+    "valid": 723,
+    "test": 722
+  },
+  "split_sizes_clean": {
+    "train": 5783,
+    "valid": 723,
+    "test": 722
+  },
+  "cleaning": [
+    {
+      "op": "flag_duplicates_in_validation_and_test",
+      "flagged": 0
+    },
+    {
+      "op": "drop_invalid_rows_from_train",
+      "removed": 0
+    },
+    {
+      "op": "drop_exact_duplicates_from_train",
+      "removed": 0
+    },
+    {
+      "op": "drop_train_texts_overlapping_validation_or_test",
+      "removed": 0
+    }
+  ],
+  "parquet_sha256": "3f7160707faef23633b1492dda78bfe6ea1bd43e2947f9a0640b2410bc2d092d",
+  "versions": {
+    "python": "3.13.14",
+    "pandas": "3.0.6",
+    "sklearn": "1.9.1"
+  }
+}
