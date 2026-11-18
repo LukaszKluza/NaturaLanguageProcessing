@@ -3,6 +3,8 @@ name = "nlp"
 version = "0.1.0"
 requires-python = ">=3.13"
 dependencies = [
+    "accelerate>=1.1.0",
+    "datasets>=5.2.0",
     "joblib>=1.6.0",
     "matplotlib>=3.11.2",
     "numpy>=2.5.4",
@@ -10,4 +12,6 @@ dependencies = [
     "pyarrow>=26.0.0",
     "scikit-learn>=1.9.1",
     "seaborn>=0.13.2",
+    "sentence-transformers>=6.2.0",
+    "transformers[torch]>=5.22.2",
 ]
